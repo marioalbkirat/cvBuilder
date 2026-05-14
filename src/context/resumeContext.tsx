@@ -78,6 +78,12 @@ export const ResumeProvider: React.FC<{ children: ReactNode }> = ({ children }) 
         // } else {
         //     if (!localRaw) setLocalStorage(mockData);
         // }
+        const localIconsRaw = localStorage.getItem("resume_show_section_icons");
+        if (localIconsRaw) {
+            try {
+                setShowSectionIconsState(JSON.parse(localIconsRaw));
+            } catch {}
+        }
         const localOrderRaw = localStorage.getItem("resume_sections_order");
         if (localOrderRaw) {
             try {
@@ -120,6 +126,7 @@ export const ResumeProvider: React.FC<{ children: ReactNode }> = ({ children }) 
     };
     const setShowSectionIcons = (visible: boolean) => {
         setShowSectionIconsState(visible);
+        localStorage.setItem("resume_show_section_icons", JSON.stringify(visible));
     };
     const updateCVData = (path: (string | number)[], value: any) => {
         setContent((prev: any) => {

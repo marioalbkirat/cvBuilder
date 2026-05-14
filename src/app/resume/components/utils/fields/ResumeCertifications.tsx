@@ -2,8 +2,8 @@ import InlineEditText from "@/lib/inlineEdit/inlineEditText";
 import { ResumeCertifications as ResumeCertificationsType } from "@/types/resumeContent";
 import { createValidator } from "@/utils/validator";
 import { useResume } from "@/context/resumeContext";
-import { FaPlusCircle, FaTrash } from "react-icons/fa";
-export default function ResumeCertifications({ certifications, updateCVData }: { certifications: ResumeCertificationsType, updateCVData: (path: (string | number)[], value: unknown) => void; } ) {
+import { FaCertificate, FaPlusCircle, FaTrash } from "react-icons/fa";
+export default function ResumeCertifications({ certifications, updateCVData }: { certifications: ResumeCertificationsType, updateCVData: (path: (string | number)[], value: unknown) => void; }) {
     const { showSectionIcons } = useResume();
     const addCertificationItem = () => {
         const newItem = { id: crypto.randomUUID(), name: "New Certification", issuer: "New Issuer", date: "Date Earned", description: "New certification description" };
@@ -12,13 +12,15 @@ export default function ResumeCertifications({ certifications, updateCVData }: {
     }
     return (
         <section id="certifications">
-            <InlineEditText as="h2" title="section name" initialValue={certifications?.title || "certifications"}
-                validate={(newVal) => createValidator({ field: "section name", min: 3, max: 30, required: true, type: "text" })(newVal)}
-                onChange={(val) => updateCVData(["certifications", "title"], val)}
-            >
-                <i className="fa-solid fa-certificate"></i>
-            </InlineEditText>
-            {showSectionIcons && <FaPlusCircle onClick={addCertificationItem} className="create-item" />}
+            <h2>
+                <InlineEditText as="span" title="section name" initialValue={certifications?.title || "certifications"}
+                    validate={(newVal) => createValidator({ field: "section name", min: 3, max: 30, required: true, type: "text" })(newVal)}
+                    onChange={(val) => updateCVData(["certifications", "title"], val)}
+                />
+                {showSectionIcons && <FaCertificate />}
+                <FaPlusCircle onClick={addCertificationItem} className="create-item" />
+            </h2>
+
             {certifications?.items?.map((certification: any, idx: number) => (
                 <div className="cert-item" key={idx}>
                     <InlineEditText as="h3" title="certification name" initialValue={certification.name || "Certification Name"}

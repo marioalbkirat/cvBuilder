@@ -18,7 +18,7 @@ export default function ResumeSkill({ skills, updateCVData }: { skills: ResumeSk
                     onChange={(val) => updateCVData(["skills", "title"], val)}
                 />
                 {showSectionIcons && <FaBrain />}
-                {showSectionIcons && <FaPlusCircle onClick={addSkillItem} className="create-item" />}
+                <FaPlusCircle onClick={addSkillItem} className="create-item" />
             </h2>
             <ul>
                 {skills.items.map((skill: any, idx: number) => (

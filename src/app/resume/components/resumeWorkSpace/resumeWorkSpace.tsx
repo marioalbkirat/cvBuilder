@@ -187,7 +187,7 @@ export default function ResumeWorkSpace({ setActiveTab, activeTab }: ResumeWorkS
     const sortedSections = [...sections].sort((a, b) => (sectionsOrderMap.get(a.key) ?? 999) - (sectionsOrderMap.get(b.key) ?? 999));
     return (
         <>
-            <IoSettings onClick={() => setActiveTab("sections")} className="resume-settings" />
+            {!isPreviewMode && <IoSettings onClick={() => setActiveTab("sections")} className="resume-settings" />} 
             {activeResume?.css && (<style>{activeResume.css}</style>)}
             <main id="resume" className={isPreviewMode ? "preview-mode" : ""}>
                 <div className="left-side">
