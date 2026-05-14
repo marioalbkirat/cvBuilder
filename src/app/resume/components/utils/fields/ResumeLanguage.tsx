@@ -19,7 +19,7 @@ export default function ResumeLanguage({ languages, updateCVData }: { languages:
                     onChange={(val) => updateCVData(["languages", "title"], val)}
                 />
                 {showSectionIcons && <LuLanguages />}
-                {showSectionIcons && <FaPlusCircle onClick={addLanguageItem} className="create-item" />}
+                <FaPlusCircle onClick={addLanguageItem} className="create-item" />
             </h2>
             <ul>
                 {languages.items.map((lang: any, idx: number) => (

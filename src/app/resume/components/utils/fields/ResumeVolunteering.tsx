@@ -18,7 +18,7 @@ export default function ResumeVolunteering({ volunteering, updateCVData }: { vol
                     onChange={(val) => updateCVData(["volunteering", "title"], val)}
                 />
                 {showSectionIcons && <FaHandshake />}
-                {showSectionIcons && <FaPlusCircle onClick={addVolunteeringItem} className="create-item" />}
+                <FaPlusCircle onClick={addVolunteeringItem} className="create-item" />
             </h2>
             <ul>
                 {volunteering.items.map((vol: any, idx: number) => (

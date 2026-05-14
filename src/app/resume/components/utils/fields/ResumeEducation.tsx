@@ -3,7 +3,7 @@ import { ResumeEducation as ResumeEducationType } from "@/types/resumeContent";
 import { createValidator } from "@/utils/validator";
 import { useResume } from "@/context/resumeContext";
 import { FaGraduationCap, FaPlusCircle, FaTrash } from "react-icons/fa";
-export default function ResumeEducation({ education, updateCVData }: { education: ResumeEducationType, updateCVData: (path: (string | number)[], value: unknown) => void; } ) {
+export default function ResumeEducation({ education, updateCVData }: { education: ResumeEducationType, updateCVData: (path: (string | number)[], value: unknown) => void; }) {
     const { showSectionIcons } = useResume();
     const addEducationItem = () => {
         const newItem = { id: crypto.randomUUID(), university: "new university", major: "new major" };
@@ -21,7 +21,7 @@ export default function ResumeEducation({ education, updateCVData }: { education
                     onChange={(val) => updateCVData(["education", "title"], val)}
                 />
                 {showSectionIcons && <FaGraduationCap />}
-                {showSectionIcons && <FaPlusCircle onClick={addEducationItem} className="create-item" />}
+                <FaPlusCircle onClick={addEducationItem} className="create-item" />
             </h2>
             <ul>
                 {education.items.map((item: any, idx: number) => (

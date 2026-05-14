@@ -3,7 +3,7 @@ import { ResumeAchievements as ResumeAchievementsType } from "@/types/resumeCont
 import { createValidator } from "@/utils/validator";
 import { useResume } from "@/context/resumeContext";
 import { FaPlusCircle, FaTrash, FaTrophy } from "react-icons/fa";
-export default function ResumeAchievements({ achievements, updateCVData }: { achievements: ResumeAchievementsType, updateCVData: (path: (string | number)[], value: unknown) => void; } ) {
+export default function ResumeAchievements({ achievements, updateCVData }: { achievements: ResumeAchievementsType, updateCVData: (path: (string | number)[], value: unknown) => void; }) {
     const { showSectionIcons } = useResume();
     const addAchievementItem = () => {
         const newItem = { id: crypto.randomUUID(), name: "New Achievement", value: "New achievement value", label: "New achievement label" };
@@ -18,7 +18,7 @@ export default function ResumeAchievements({ achievements, updateCVData }: { ach
                     onChange={(val) => updateCVData(["achievements", "title"], val)}
                 />
                 {showSectionIcons && <FaTrophy />}
-                {showSectionIcons && <FaPlusCircle onClick={addAchievementItem} className="create-item" />}
+                <FaPlusCircle onClick={addAchievementItem} className="create-item" />
             </h2>
             <div className="achievement-grid">
                 {achievements?.items?.map((achievement: any, idx: number) => (
