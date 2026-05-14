@@ -21,6 +21,7 @@ import type { ComponentType } from "react";
 
 interface ResumeSection {
     key: string;
+    visible: boolean;
     component: ComponentType<any>;
     area: "left" | "right";
     order: number;
@@ -32,7 +33,7 @@ export default function ResumeWorkSpace({ setActiveTab, activeTab }: ResumeWorkS
     const user = {
         plan: "premium"
     }
-    const { content, loading, updateCVData, activeResume, isPreviewMode } = useResume();
+    const { content, loading, updateCVData, activeResume, isPreviewMode, sectionOrder } = useResume();
     if (loading || !content?.header || !content?.profile) return <p>loading</p>;
 
     const sections: ResumeSection[] = [
@@ -44,7 +45,8 @@ export default function ResumeWorkSpace({ setActiveTab, activeTab }: ResumeWorkS
             plan: "freemium",
             props: {
                 image: content.image
-            }
+            },
+            visible: content.image.visibility_section
         },
         {
             key: "contact",
@@ -55,7 +57,8 @@ export default function ResumeWorkSpace({ setActiveTab, activeTab }: ResumeWorkS
             props: {
                 contact: content.contact,
                 updateCVData
-            }
+            },
+            visible: content.contact.visibility_section
         },
         {
             key: "education",
@@ -66,7 +69,8 @@ export default function ResumeWorkSpace({ setActiveTab, activeTab }: ResumeWorkS
             props: {
                 education: content.education,
                 updateCVData
-            }
+            },
+            visible: content.education.visibility_section
         },
         {
             key: "skills",
@@ -77,7 +81,8 @@ export default function ResumeWorkSpace({ setActiveTab, activeTab }: ResumeWorkS
             props: {
                 skills: content.skills,
                 updateCVData
-            }
+            },
+            visible: content.skills.visibility_section
         },
         {
             key: "languages",
@@ -88,7 +93,8 @@ export default function ResumeWorkSpace({ setActiveTab, activeTab }: ResumeWorkS
             props: {
                 languages: content.languages,
                 updateCVData
-            }
+            },
+            visible: content.languages.visibility_section
         },
         {
             key: "volunteering",
@@ -99,7 +105,8 @@ export default function ResumeWorkSpace({ setActiveTab, activeTab }: ResumeWorkS
             props: {
                 volunteering: content.volunteering,
                 updateCVData
-            }
+            },
+            visible: content.volunteering.visibility_section
         },
         {
             key: "header",
@@ -110,7 +117,8 @@ export default function ResumeWorkSpace({ setActiveTab, activeTab }: ResumeWorkS
             props: {
                 header: content.header,
                 updateCVData
-            }
+            },
+            visible: content.header.visibility_section
         },
         {
             key: "profile",
@@ -121,7 +129,8 @@ export default function ResumeWorkSpace({ setActiveTab, activeTab }: ResumeWorkS
             props: {
                 profile: content.profile,
                 updateCVData
-            }
+            },
+            visible: content.profile.visibility_section
         },
         {
             key: "experience",
@@ -132,7 +141,8 @@ export default function ResumeWorkSpace({ setActiveTab, activeTab }: ResumeWorkS
             props: {
                 experience: content.experience,
                 updateCVData
-            }
+            },
+            visible: content.experience.visibility_section
         },
         {
             key: "projects",
@@ -143,7 +153,8 @@ export default function ResumeWorkSpace({ setActiveTab, activeTab }: ResumeWorkS
             props: {
                 projects: content.projects,
                 updateCVData
-            }
+            },
+            visible: content.projects.visibility_section
         },
         {
             key: "achievements",
@@ -154,7 +165,8 @@ export default function ResumeWorkSpace({ setActiveTab, activeTab }: ResumeWorkS
             props: {
                 achievements: content.achievements,
                 updateCVData
-            }
+            },
+            visible: content.achievements.visibility_section
         },
         {
             key: "certifications",
@@ -165,37 +177,41 @@ export default function ResumeWorkSpace({ setActiveTab, activeTab }: ResumeWorkS
             props: {
                 certifications: content.certifications,
                 updateCVData
-            }
+            },
+            visible: content.certifications.visibility_section
         },
 
     ];
+
+    const sectionsOrderMap = new Map(sectionOrder.map((key, index) => [key, index]));
+    const sortedSections = [...sections].sort((a, b) => (sectionsOrderMap.get(a.key) ?? 999) - (sectionsOrderMap.get(b.key) ?? 999));
     return (
         <>
             <IoSettings onClick={() => setActiveTab("sections")} className="resume-settings" />
             {activeResume?.css && (<style>{activeResume.css}</style>)}
             <main id="resume" className={isPreviewMode ? "preview-mode" : ""}>
                 <div className="left-side">
-                    {sections
+                    {sortedSections
                         .filter(section =>
                             section.area === "left" &&
                             (
                                 section.plan === "freemium" ||
                                 user.plan === "premium"
-                            )
-                        ).sort((a, b) => a.order - b.order).map(section => {
+                            ) && section.visible
+                        ).map(section => {
                             const Component = section.component;
                             return <Component key={section.key} {...section.props} />
                         })}
                 </div>
                 <div className="right-side">
-                    {sections
+                    {sortedSections
                         .filter(section =>
                             section.area === "right" &&
                             (
                                 section.plan === "freemium" ||
                                 user.plan === "premium"
-                            )
-                        ).sort((a, b) => a.order - b.order).map(section => {
+                            ) && section.visible
+                        ).map(section => {
                             const Component = section.component;
                             return <Component key={section.key} {...section.props} />
                         })}
