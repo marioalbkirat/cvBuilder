@@ -5,14 +5,18 @@ import { FaRobot } from "react-icons/fa6";
 import { FiGrid } from "react-icons/fi";
 import ResumeTemplates from "../resumeTemplates/resumeTemplates";
 import { useResume } from "@/context/resumeContext";
-import ResumeCustomizeSections from "./customizeSections";
-
 interface AnalysisResult {
     score: number;
     missingKeywords: string[];
     suggestions: string[];
 }
-
+interface Section {
+    id: number;
+    name: string;
+    visible: boolean;
+    order: number;
+    content?: string;
+}
 interface ResumeCPanelInterface {
     setActiveTab: (a: string) => void;
     activeTab: string
@@ -33,9 +37,20 @@ export default function ResumeCPanel({ setActiveTab, activeTab }: ResumeCPanelIn
     const [answers, setAnswers] = useState<any[]>();
     const [questions, setQuestions] = useState<Question[]>();
     const [analysisResult, setAnalysisResult] = useState<AnalysisResult | null>(null);
+    const [draggedSection, setDraggedSection] = useState<number | null>(null);
     const [optimizedContent, setOptimizedContent] = useState<Record<number, string>>({});
     const [showOptimized, setShowOptimized] = useState<Record<number, boolean>>({});
     const fileInputRef = useRef<HTMLInputElement>(null);
+    const [sections, setSections] = useState<Section[]>([
+        { id: 1, name: "Professional Summary", visible: true, order: 0, content: "Experienced Full-Stack Developer with 5+ years of expertise in building scalable web applications. Proficient in React, TypeScript, Node.js, and modern web technologies." },
+        { id: 2, name: "Work Experience", visible: true, order: 1, content: "Senior Developer at Tech Corp (2021-Present)\n- Led development of 5+ major features\n- Improved performance by 40%\n- Mentored 3 junior developers" },
+        { id: 3, name: "Education", visible: true, order: 2, content: "Bachelor of Science in Computer Science\nUniversity of Technology, 2018" },
+        { id: 4, name: "Skills", visible: true, order: 3, content: "JavaScript, TypeScript, React, Next.js, Node.js, Python, SQL, Git" },
+        { id: 5, name: "Projects", visible: true, order: 4, content: "E-commerce Platform - Built a full-stack e-commerce solution\nPortfolio Website - Personal portfolio with React" },
+        { id: 6, name: "Certifications", visible: true, order: 5, content: "AWS Certified Developer\nMeta Frontend Developer Certificate" },
+        { id: 7, name: "Languages", visible: true, order: 6, content: "English (Fluent)\nArabic (Native)" },
+        { id: 8, name: "Achievements", visible: true, order: 7, content: "Best Employee Award 2023\nOpen Source Contributor" },
+    ]);
     // const handleAnalyzeWithJD = async () => {
     //     if (!jobDescription.trim()) {
     //         alert("Please enter a job description");
@@ -103,14 +118,49 @@ export default function ResumeCPanel({ setActiveTab, activeTab }: ResumeCPanelIn
     const handleOptimizeResume = () => {
         const newOptimizedContent: Record<number, string> = {};
         const newShowOptimized: Record<number, boolean> = {};
-        // Removed hardcoded sections optimization logic for brevity, you might want to adapt this to use global content later.
+        sections.forEach(section => {
+            if (section.name === "Professional Summary" && section.content) {
+                newOptimizedContent[section.id] = "Results-driven Full-Stack Developer with 5+ years of expertise in building scalable web applications using React, TypeScript, and Node.js. Proven track record of delivering high-quality solutions that improve user experience by 40%.";
+                newShowOptimized[section.id] = true;
+            } else if (section.name === "Work Experience" && section.content) {
+                newOptimizedContent[section.id] = "Senior Developer at Tech Corp (2021-Present)\n- Architected and deployed 15+ responsive web applications\n- Implemented performance optimizations resulting in 40% faster load times\n- Led a team of 5 developers, increasing productivity by 25%\n- Reduced technical debt by implementing best practices and code reviews";
+                newShowOptimized[section.id] = true;
+            } else if (section.name === "Projects" && section.content) {
+                newOptimizedContent[section.id] = "E-commerce Platform - Built a full-stack e-commerce solution with 10k+ monthly users\n- Implemented payment integration and real-time inventory\nPortfolio Website - Personal portfolio with React and Three.js\n- Featured in 3 design publications\nOpen Source Contributor - 50+ merged PRs in popular repositories";
+                newShowOptimized[section.id] = true;
+            } else {
+                newShowOptimized[section.id] = false;
+            }
+        });
         setOptimizedContent(newOptimizedContent);
         setShowOptimized(newShowOptimized);
         alert("Optimizations applied! Check the Professional Summary, Work Experience, and Projects sections.");
     };
-    const handleOptimizeResume = () => {
-        // Removed hardcoded sections optimization logic for brevity, you might want to adapt this to use global content later.
-        alert("Optimizations applied! Check the Professional Summary, Work Experience, and Projects sections.");
+    const toggleSectionVisibility = (id: number) => {
+        setSections(sections.map(section =>
+            section.id === id ? { ...section, visible: !section.visible } : section
+        ));
+    };
+    const handleDragStart = (e: React.DragEvent, id: number) => {
+        setDraggedSection(id);
+        e.dataTransfer.effectAllowed = "move";
+    };
+    const handleDragOver = (e: React.DragEvent) => {
+        e.preventDefault();
+        e.dataTransfer.dropEffect = "move";
+    };
+    const handleDrop = (e: React.DragEvent, targetId: number) => {
+        e.preventDefault();
+        if (draggedSection === null) return;
+        const draggedIndex = sections.findIndex(s => s.id === draggedSection);
+        const targetIndex = sections.findIndex(s => s.id === targetId);
+        if (draggedIndex !== -1 && targetIndex !== -1 && draggedIndex !== targetIndex) {
+            const newSections = [...sections];
+            const [draggedItem] = newSections.splice(draggedIndex, 1);
+            newSections.splice(targetIndex, 0, draggedItem);
+            setSections(newSections);
+        }
+        setDraggedSection(null);
     };
     return (
         <div style={{ width: "690px" }} className="min-h-screen bg-linear-to-br from-gray-50 to-gray-100 py-8 px-4">
@@ -295,7 +345,51 @@ export default function ResumeCPanel({ setActiveTab, activeTab }: ResumeCPanelIn
                     </div>
                 )}
                 {activeTab === "sections" && (
-                    <ResumeCustomizeSections />
+                    <div className="space-y-6 animate-fadeIn">
+                        <div className="bg-white rounded-xl shadow-lg p-6">
+                            <h2 className="text-xl font-semibold text-gray-900 mb-4 flex items-center gap-2">
+                                <FiGrid className="w-5 h-5 text-indigo-600" />
+                                Customize Sections
+                            </h2>
+
+                            <div className="space-y-3 mb-6">
+                                {sections.map((section) => (
+                                    <div
+                                        key={section.id}
+                                        draggable
+                                        onDragStart={(e) => handleDragStart(e, section.id)}
+                                        onDragOver={handleDragOver}
+                                        onDrop={(e) => handleDrop(e, section.id)}
+                                        className="flex items-center justify-between p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-all group cursor-move"
+                                    >
+                                        <div className="flex items-center gap-3 flex-1">
+                                            <input
+                                                type="checkbox"
+                                                checked={section.visible}
+                                                onChange={() => toggleSectionVisibility(section.id)}
+                                                className="w-5 h-5 rounded border-gray-300 text-blue-600 focus:ring-blue-500 cursor-pointer"
+                                            />
+                                            <span className={`text-gray-700 font-medium ${!section.visible ? 'line-through text-gray-400' : ''}`}>
+                                                {section.name}
+                                            </span>
+                                            {["Professional Summary", "Work Experience", "Projects"].includes(section.name) && (
+                                                <FaRobot className="w-4 h-4 text-purple-500 ml-2" title="AI Optimizable" />
+                                            )}
+                                        </div>
+                                        <div className="flex gap-2">
+                                            <IoMdMove className="w-5 h-5 text-gray-400" />
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                            <button className="w-full px-4 py-3 border-2 border-dashed border-gray-300 rounded-lg text-gray-600 hover:border-indigo-500 hover:text-indigo-600 transition-all font-medium flex items-center justify-center gap-2 cursor-pointer">
+                                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+                                </svg>
+                                Add Custom Section
+                            </button>
+                        </div>
+                    </div>
                 )}
                 {activeTab === "templates" && (
                     <ResumeTemplates />

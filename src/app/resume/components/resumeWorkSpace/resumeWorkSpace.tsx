@@ -32,14 +32,8 @@ export default function ResumeWorkSpace({ setActiveTab, activeTab }: ResumeWorkS
     const user = {
         plan: "premium"
     }
-    const { content, loading, updateCVData, activeResume, isPreviewMode, layout } = useResume();
-    if (loading || !content?.header || !content?.profile || !layout) return <p>loading</p>;
-
-    const layoutOrderMap = new Map(layout.map((item, index) => [item.id, index]));
-    const getSectionOrder = (key: string) => {
-        const order = layoutOrderMap.get(key);
-        return order !== undefined ? order : 999;
-    };
+    const { content, loading, updateCVData, activeResume, isPreviewMode } = useResume();
+    if (loading || !content?.header || !content?.profile) return <p>loading</p>;
 
     const sections: ResumeSection[] = [
         {
@@ -188,7 +182,7 @@ export default function ResumeWorkSpace({ setActiveTab, activeTab }: ResumeWorkS
                                 section.plan === "freemium" ||
                                 user.plan === "premium"
                             )
-                        ).sort((a, b) => getSectionOrder(a.key) - getSectionOrder(b.key)).map(section => {
+                        ).sort((a, b) => a.order - b.order).map(section => {
                             const Component = section.component;
                             return <Component key={section.key} {...section.props} />
                         })}
@@ -201,7 +195,7 @@ export default function ResumeWorkSpace({ setActiveTab, activeTab }: ResumeWorkS
                                 section.plan === "freemium" ||
                                 user.plan === "premium"
                             )
-                        ).sort((a, b) => getSectionOrder(a.key) - getSectionOrder(b.key)).map(section => {
+                        ).sort((a, b) => a.order - b.order).map(section => {
                             const Component = section.component;
                             return <Component key={section.key} {...section.props} />
                         })}

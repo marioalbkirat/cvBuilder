@@ -14,8 +14,6 @@ interface ResumeContextType {
     content: ResumeContent | null;
     isPreviewMode: boolean;
     setPreviewMode: (p: boolean) => void;
-    layout: { id: string; name: string; area: "left" | "right" }[];
-    updateLayout: (newLayout: { id: string; name: string; area: "left" | "right" }[]) => void;
 }
 const ResumeContext = createContext<ResumeContextType | undefined>(undefined);
 export const ResumeProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
@@ -25,20 +23,6 @@ export const ResumeProvider: React.FC<{ children: ReactNode }> = ({ children }) 
     const [isPreviewMode, setPreviewMode] = useState<boolean>(false);
     const [error, setError] = useState<string | null>(null);
     const [activeResume, setActiveResume] = useState<ResumeType | null>(null);
-    const [layout, setLayout] = useState<{ id: string; name: string; area: "left" | "right" }[]>([
-        { id: "image", name: "Profile Image", area: "left" },
-        { id: "contact", name: "Contact", area: "left" },
-        { id: "education", name: "Education", area: "left" },
-        { id: "skills", name: "Skills", area: "left" },
-        { id: "languages", name: "Languages", area: "left" },
-        { id: "volunteering", name: "Volunteering", area: "left" },
-        { id: "header", name: "Header", area: "right" },
-        { id: "profile", name: "Professional Summary", area: "right" },
-        { id: "experience", name: "Work Experience", area: "right" },
-        { id: "projects", name: "Projects", area: "right" },
-        { id: "achievements", name: "Achievements", area: "right" },
-        { id: "certifications", name: "Certifications", area: "right" }
-    ]);
     const getResumes = useCallback(async () => {
         try {
             setLoading(true);
@@ -65,7 +49,7 @@ export const ResumeProvider: React.FC<{ children: ReactNode }> = ({ children }) 
         let resumeContent: ResumeContent = mockData;
         const localRaw = localStorage.getItem("resume");
         const localData = localRaw ? JSON.parse(localRaw) : null;
-        
+
         // const res = await fetch("/api/user-resume");
         // if (res.ok) {
         //     const dbData = await res.json();
@@ -88,10 +72,6 @@ export const ResumeProvider: React.FC<{ children: ReactNode }> = ({ children }) 
         //     if (!localRaw) setLocalStorage(mockData);
         // }
         setContent(mockData);
-        const localLayoutRaw = localStorage.getItem("resume_layout");
-        if (localLayoutRaw) {
-            setLayout(JSON.parse(localLayoutRaw));
-        }
     }, []);
     function deepClone<T>(obj: T): T {
         if (typeof structuredClone === "function") {
@@ -130,10 +110,7 @@ export const ResumeProvider: React.FC<{ children: ReactNode }> = ({ children }) 
         });
     };
 
-    const updateLayout = (newLayout: { id: string; name: string; area: "left" | "right" }[]) => {
-        setLayout(newLayout);
-        localStorage.setItem("resume_layout", JSON.stringify(newLayout));
-    };
+
 
     return (
         <ResumeContext.Provider
@@ -146,9 +123,7 @@ export const ResumeProvider: React.FC<{ children: ReactNode }> = ({ children }) 
                 activeResume,
                 setActiveResume,
                 updateCVData,
-                content,
-                layout,
-                updateLayout
+                content
             }}
         >
             {children}
