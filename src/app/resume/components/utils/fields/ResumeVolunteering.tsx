@@ -1,8 +1,10 @@
 import InlineEditText from "@/lib/inlineEdit/inlineEditText";
 import { ResumeVolunteering as ResumeVolunteeringType } from "@/types/resumeContent";
 import { createValidator } from "@/utils/validator";
+import { useResume } from "@/context/resumeContext";
 import { FaHandshake, FaPlusCircle, FaTrash } from "react-icons/fa";
-export default function ResumeVolunteering({ volunteering, updateCVData }: { volunteering: ResumeVolunteeringType, updateCVData: (path: (string | number)[], value: unknown) => void; }) {
+export default function ResumeVolunteering({ volunteering, updateCVData }: { volunteering: ResumeVolunteeringType, updateCVData: (path: (string | number)[], value: unknown) => void; } ) {
+    const { showSectionIcons } = useResume();
     const addVolunteeringItem = () => {
         const newItem = { id: Date.now(), organization: "New Organization", role: "New Role", date: "2020 - 2021", description: "New volunteering description", location: "New Location" };
         const updatedItems = [...volunteering.items, newItem];
@@ -15,8 +17,8 @@ export default function ResumeVolunteering({ volunteering, updateCVData }: { vol
                     validate={(newVal) => createValidator({ field: "section name", min: 3, max: 13, required: true, type: "text" })(newVal)}
                     onChange={(val) => updateCVData(["volunteering", "title"], val)}
                 />
-                <FaHandshake />
-                <FaPlusCircle onClick={addVolunteeringItem} className="create-item" />
+                {showSectionIcons && <FaHandshake />}
+                {showSectionIcons && <FaPlusCircle onClick={addVolunteeringItem} className="create-item" />}
             </h2>
             <ul>
                 {volunteering.items.map((vol: any, idx: number) => (

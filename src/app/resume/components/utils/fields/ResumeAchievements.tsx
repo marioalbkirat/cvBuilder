@@ -1,8 +1,10 @@
 import InlineEditText from "@/lib/inlineEdit/inlineEditText";
 import { ResumeAchievements as ResumeAchievementsType } from "@/types/resumeContent";
 import { createValidator } from "@/utils/validator";
+import { useResume } from "@/context/resumeContext";
 import { FaPlusCircle, FaTrash, FaTrophy } from "react-icons/fa";
-export default function ResumeAchievements({ achievements, updateCVData }: { achievements: ResumeAchievementsType, updateCVData: (path: (string | number)[], value: unknown) => void; }) {
+export default function ResumeAchievements({ achievements, updateCVData }: { achievements: ResumeAchievementsType, updateCVData: (path: (string | number)[], value: unknown) => void; } ) {
+    const { showSectionIcons } = useResume();
     const addAchievementItem = () => {
         const newItem = { id: crypto.randomUUID(), name: "New Achievement", value: "New achievement value", label: "New achievement label" };
         const updatedItems = [...achievements.items, newItem];
@@ -15,8 +17,8 @@ export default function ResumeAchievements({ achievements, updateCVData }: { ach
                     validate={(newVal) => createValidator({ field: "section name", min: 3, max: 30, required: true, type: "text" })(newVal)}
                     onChange={(val) => updateCVData(["achievements", "title"], val)}
                 />
-                <FaTrophy />
-                <FaPlusCircle onClick={addAchievementItem} className="create-item" />
+                {showSectionIcons && <FaTrophy />}
+                {showSectionIcons && <FaPlusCircle onClick={addAchievementItem} className="create-item" />}
             </h2>
             <div className="achievement-grid">
                 {achievements?.items?.map((achievement: any, idx: number) => (
