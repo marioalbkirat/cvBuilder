@@ -14,6 +14,10 @@ interface ResumeContextType {
     content: ResumeContent | null;
     isPreviewMode: boolean;
     setPreviewMode: (p: boolean) => void;
+    sectionOrder: string[];
+    setSectionOrder: (order: string[]) => void;
+    showSectionIcons: boolean;
+    setShowSectionIcons: (visible: boolean) => void;
 }
 const ResumeContext = createContext<ResumeContextType | undefined>(undefined);
 export const ResumeProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
@@ -23,6 +27,9 @@ export const ResumeProvider: React.FC<{ children: ReactNode }> = ({ children }) 
     const [isPreviewMode, setPreviewMode] = useState<boolean>(false);
     const [error, setError] = useState<string | null>(null);
     const [activeResume, setActiveResume] = useState<ResumeType | null>(null);
+    const defaultSectionOrder = ["image","contact","education","skills","languages","volunteering","header","profile","experience","projects","achievements","certifications"];
+    const [sectionOrder, setSectionOrderState] = useState<string[]>(defaultSectionOrder);
+    const [showSectionIcons, setShowSectionIconsState] = useState<boolean>(true);
     const getResumes = useCallback(async () => {
         try {
             setLoading(true);
@@ -71,6 +78,19 @@ export const ResumeProvider: React.FC<{ children: ReactNode }> = ({ children }) 
         // } else {
         //     if (!localRaw) setLocalStorage(mockData);
         // }
+        const localIconsRaw = localStorage.getItem("resume_show_section_icons");
+        if (localIconsRaw) {
+            try {
+                setShowSectionIconsState(JSON.parse(localIconsRaw));
+            } catch {}
+        }
+        const localOrderRaw = localStorage.getItem("resume_sections_order");
+        if (localOrderRaw) {
+            try {
+                const parsed = JSON.parse(localOrderRaw);
+                if (Array.isArray(parsed) && parsed.length) setSectionOrderState(parsed);
+            } catch {}
+        }
         setContent(mockData);
     }, []);
     function deepClone<T>(obj: T): T {
@@ -100,6 +120,14 @@ export const ResumeProvider: React.FC<{ children: ReactNode }> = ({ children }) 
         }
         current[lastKey] = value;
     }
+    const setSectionOrder = (order: string[]) => {
+        setSectionOrderState(order);
+        localStorage.setItem("resume_sections_order", JSON.stringify(order));
+    };
+    const setShowSectionIcons = (visible: boolean) => {
+        setShowSectionIconsState(visible);
+        localStorage.setItem("resume_show_section_icons", JSON.stringify(visible));
+    };
     const updateCVData = (path: (string | number)[], value: any) => {
         setContent((prev: any) => {
             const updated = deepClone(prev || {});
@@ -117,6 +145,10 @@ export const ResumeProvider: React.FC<{ children: ReactNode }> = ({ children }) 
             value={{
                 isPreviewMode,
                 setPreviewMode,
+                sectionOrder,
+                setSectionOrder,
+                showSectionIcons,
+                setShowSectionIcons,
                 resumes,
                 loading,
                 error,

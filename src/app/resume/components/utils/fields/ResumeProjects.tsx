@@ -4,7 +4,9 @@ import { createValidator } from "@/utils/validator";
 import { FaArrowUpRightFromSquare } from "react-icons/fa6";
 import { FaEye, FaEyeSlash, FaPlusCircle, FaProjectDiagram, FaTrash } from "react-icons/fa";
 import { ResumeProjects as ResumeProjectsType } from "@/types/resumeContent";
+import { useResume } from "@/context/resumeContext";
 export default function ResumeProjects({ projects, updateCVData }: { projects: ResumeProjectsType, updateCVData: (path: (string | number)[], value: unknown) => void; }) {
+    const { showSectionIcons } = useResume();
     const addProjectItem = () => {
         const newItem = { id: crypto.randomUUID(), name: "New Project", description: "New project description", link: { visibility_item: true, title: "hello", url: "xsa" }, tech: { visibility_item: true, items: ["java", "php"] } };
         const updatedItems = [...projects.items, newItem];
@@ -28,7 +30,7 @@ export default function ResumeProjects({ projects, updateCVData }: { projects: R
                             validate={(newVal) => createValidator({ field: "section name", min: 3, max: 30, required: true, type: "text" })(newVal)}
                             onChange={(val) => updateCVData(["projects", "title"], val)}
                         />
-                        <FaProjectDiagram />
+                        {showSectionIcons && <FaProjectDiagram />}
                         <div
                             style={{ cursor: "pointer" }}
                             onClick={() =>
