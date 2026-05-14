@@ -1,9 +1,11 @@
 import InlineEditText from "@/lib/inlineEdit/inlineEditText";
 import { ResumeContact as ResumeContentType } from "@/types/resumeContent";
 import { createValidator } from "@/utils/validator";
+import { useResume } from "@/context/resumeContext";
 import { FaIdCard, FaPlusCircle, FaTrash } from "react-icons/fa";
 import { MdContactPage } from "react-icons/md";
-export default function ResumeContact({ contact, updateCVData }: { contact: ResumeContentType, updateCVData: (path: (string | number)[], value: unknown) => void; }) {
+export default function ResumeContact({ contact, updateCVData }: { contact: ResumeContentType, updateCVData: (path: (string | number)[], value: unknown) => void; } ) {
+    const { showSectionIcons } = useResume();
     const addContactItem = () => {
         const newItem = { id: crypto.randomUUID(), url: "new contact" };
         const updatedItems = [...contact.items, newItem];
@@ -16,8 +18,8 @@ export default function ResumeContact({ contact, updateCVData }: { contact: Resu
                     validate={(newVal) => createValidator({ field: "section name", min: 3, max: 13, required: true, type: "text" })(newVal)}
                     onChange={(val) => updateCVData(["contact", "title"], val)}
                 />
-                <FaIdCard />
-                <FaPlusCircle onClick={addContactItem} className="create-item" />
+                {showSectionIcons && <FaIdCard />}
+                {showSectionIcons && <FaPlusCircle onClick={addContactItem} className="create-item" />}
             </h2>
             <ul>
                 {contact.items.map((item, idx) => (
