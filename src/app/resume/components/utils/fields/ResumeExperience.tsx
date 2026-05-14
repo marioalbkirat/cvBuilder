@@ -3,7 +3,7 @@ import { ResumeExperience as ResumeExperienceType } from "@/types/resumeContent"
 import { createValidator } from "@/utils/validator";
 import { useResume } from "@/context/resumeContext";
 import { FaBriefcase, FaPlusCircle, FaTrash } from "react-icons/fa";
-export default function ResumeExperience({ experience, updateCVData }: { experience: ResumeExperienceType, updateCVData: (path: (string | number)[], value: unknown) => void; } ) {
+export default function ResumeExperience({ experience, updateCVData }: { experience: ResumeExperienceType, updateCVData: (path: (string | number)[], value: unknown) => void; }) {
     const { showSectionIcons } = useResume();
     const addExperienceItem = () => {
         const newItem = { id: crypto.randomUUID(), position: "New Position", company: "New Company", date: "2020 - 2021", description: "New experience description" };
@@ -18,7 +18,7 @@ export default function ResumeExperience({ experience, updateCVData }: { experie
                     onChange={(val) => updateCVData(["experience", "title"], val)}
                 />
                 {showSectionIcons && <FaBriefcase />}
-                {showSectionIcons && <FaPlusCircle onClick={addExperienceItem} className="create-item" />}
+                <FaPlusCircle onClick={addExperienceItem} className="create-item" />
             </h2>
             <ul>
                 {experience?.items.map((exp: any, idx: number) => (

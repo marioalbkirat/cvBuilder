@@ -4,7 +4,7 @@ import { createValidator } from "@/utils/validator";
 import { useResume } from "@/context/resumeContext";
 import { FaIdCard, FaPlusCircle, FaTrash } from "react-icons/fa";
 import { MdContactPage } from "react-icons/md";
-export default function ResumeContact({ contact, updateCVData }: { contact: ResumeContentType, updateCVData: (path: (string | number)[], value: unknown) => void; } ) {
+export default function ResumeContact({ contact, updateCVData }: { contact: ResumeContentType, updateCVData: (path: (string | number)[], value: unknown) => void; }) {
     const { showSectionIcons } = useResume();
     const addContactItem = () => {
         const newItem = { id: crypto.randomUUID(), url: "new contact" };
@@ -19,7 +19,7 @@ export default function ResumeContact({ contact, updateCVData }: { contact: Resu
                     onChange={(val) => updateCVData(["contact", "title"], val)}
                 />
                 {showSectionIcons && <FaIdCard />}
-                {showSectionIcons && <FaPlusCircle onClick={addContactItem} className="create-item" />}
+                <FaPlusCircle onClick={addContactItem} className="create-item" />
             </h2>
             <ul>
                 {contact.items.map((item, idx) => (
