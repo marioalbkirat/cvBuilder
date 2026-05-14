@@ -1,0 +1,198 @@
+{
+    "image": {
+        "visibility_section": true,
+        "image": "/images/user-photo.avif"
+    },
+    "header": {
+        "visibility_section": true,
+        "name": "Daniel Carter",
+        "position": "UI/UX & Visual Designer"
+    },
+    "profile": {
+        "title": "Profile",
+        "visibility_section": true,
+        "summary": "I transform ideas into visually compelling and user-friendly digital experiences. With a passion for design and an eye for detail, I specialize in creating intuitive interfaces, engaging user experiences, and aesthetically pleasing digital products that leave a lasting impression."
+    },
+    "education": {
+        "visibility_section": true,
+        "title": "Education",
+        "items": [
+            {
+                "id": "asokchwiuhcqkj",
+                "university": "Technical University of Berlin",
+                "major": "Bachelor of Arts in Visual Communication - GPA 3.9",
+                "date": "2015 - 2019"
+            }
+        ]
+    },
+    "experience": {
+        "visibility_section": true,
+        "title": "Experience",
+        "items": [
+            {
+                "id": "bskjbakjjkds",
+                "position": "UI/UX Designer",
+                "company": "TechNova Solutions",
+                "date": "2021 - Present",
+                "description": "Designed and delivered engaging user interfaces and digital experiences for web and mobile platforms. Collaborated with product managers and developers to ensure visually appealing and user-friendly solutions."
+            }
+        ]
+    },
+    "skills": {
+        "visibility_section": true,
+        "title": "Skills",
+        "items": [
+            {
+                "id": "msalknakjhbe",
+                "name": "Adobe Photoshop"
+            },
+            {
+                "id": "jksaniueghxkw",
+                "name": "Adobe Illustrator"
+            },
+            {
+                "id": "jksaniueghxkwqq",
+                "name": "Figma / Sketch"
+            },
+            {
+                "id": "jksaniueghxkwqxie",
+                "name": "Adobe XD / InVision"
+            },
+            {
+                "id": "jksaniueghxkwkciqq",
+                "name": "UI/UX Design"
+            }
+        ]
+    },
+    "languages": {
+        "visibility_section": true,
+        "title": "Languages",
+        "items": [
+            {
+                "id": "jksaniuegehwxqkw",
+                "lang": "English",
+                "level": "Native"
+            }
+        ]
+    },
+    "contact": {
+        "visibility_section": true,
+        "title": "Contact Me",
+        "items": [
+            {
+                "id": "bbnnhhgg",
+                "title": "[EMAIL_ADDRESS]",
+                "url": "mailto:[EMAIL_ADDRESS]"
+            },
+            {
+                "id": "bbnnhhggkk",
+                "title": "+491234567890",
+                "url": "tel:+491234567890"
+            },
+            {
+                "id": "bbnnhhas",
+                "title": "Chat on WhatsApp",
+                "url": "https://wa.me/491234567890"
+            },
+            {
+                "id": "bbnnhhggdf",
+                "title": "LinkedIn",
+                "url": "https://linkedin.com/in/danielcarterdev"
+            },
+            {
+                "id": "bbnnhhxavgg",
+                "title": "Dribbble Portfolio",
+                "url": "https://dribbble.com/danielcarterdev"
+            }
+        ]
+    },
+    "projects": {
+        "visibility_section": true,
+        "title": "Projects",
+        "items": [
+            {
+                "id": "oiunhgrad",
+                "name": "TaskFlow - Productivity App",
+                "description": "Designed the UI/UX for a productivity app, focusing on task management and collaboration, with intuitive dashboards and engaging interactions.",
+                "link": {
+                    "visibility_item": true,
+                    "title": "Dribbble",
+                    "url": "https://dribbble.com/sophiamartinez/flowly"
+                },
+                "tech": {
+                    "visibility_item": true,
+                    "items": [
+                        {
+                            "id": "asokchwiuhcqinhg",
+                            "name": "Figma / Sketch"
+                        },
+                        {
+                            "id": "xaokqw",
+                            "name": "Adobe Photoshop"
+                        },
+                        {
+                            "id": "xaokqaw",
+                            "name": "Prototyping"
+                        },
+                        {
+                            "id": "xaokqawQS",
+                            "name": "Adobe XD "
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    "volunteering": {
+        "visibility_section": true,
+        "title": "Volunteering",
+        "items": [
+            {
+                "id": "asoqkchwiuhcqinhxasg",
+                "role": "Design Mentor",
+                "organization": "Design for Good",
+                "date": "2020 - Present",
+                "description": "Mentoring aspiring designers and providing guidance on design projects that have a positive social impact.",
+                "location": "London",
+                "link": {
+                    "visibility_item": true,
+                    "url": "https://designforgood.org/mentor-profile/daniel-carter",
+                    "title": "View Profile"
+                }
+            }
+        ]
+    },
+    "certifications": {
+        "visibility_section": true,
+        "title": "Certifications",
+        "items": [
+            {
+                "id": "bbnnhwhaxqs",
+                "name": "UI/UX Design Certification",
+                "issuer": "Interaction Design Foundation",
+                "date": "2022",
+                "link": {
+                    "visibility_item": true,
+                    "url": "https://example.com/certificates/ui-ux-design",
+                    "title": "View Certificate"
+                }
+            }
+        ]
+    },
+    "achievements": {
+        "visibility_section": true,
+        "title": "Achievements",
+        "items": [
+            {
+                "id": "asokchwiuhcqxakj",
+                "label": "50+",
+                "value": "Design Projects Completed"
+            },
+            {
+                "id": "bbnnhhggdqf",
+                "label": "25+",
+                "value": "Happy Clients Worldwide"
+            }
+        ]
+    }
+}

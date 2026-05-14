@@ -1,0 +1,101 @@
+.cv-page {
+    width: 210mm;
+    min-height: 297mm;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+    page-break-after: always;
+    font-family: 'Inter', 'Segoe UI', 'Helvetica Neue', sans-serif;
+}
+.cv-page .resume-settings{
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 1.3rem;
+    cursor: pointer;
+    font-weight: 900;
+}
+
+@media print {
+    body {
+        margin: 0;
+        background: none;
+    }
+
+    .cv-page {
+        margin: 0;
+        box-shadow: none;
+        page-break-after: always;
+    }
+}
+
+
+h3 {
+    display: block;
+    font-size: 1.17em;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+    unicode-bidi: isolate;
+}
+
+h4 {
+    display: block;
+    margin-block-start: 1.33em;
+    margin-block-end: 1.33em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+    unicode-bidi: isolate;
+}
+
+h6 {
+    display: block;
+    font-size: 0.67em;
+    margin-block-start: 2.33em;
+    margin-block-end: 2.33em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+    unicode-bidi: isolate;
+}
+
+
+.create-item {
+    border-radius: 100%;
+    /* background: white;
+    color: black; */
+    margin-left: auto;
+    cursor: pointer;
+}
+
+.delete-item {
+    color: red;
+    margin-left: auto;
+    cursor: pointer;
+}
+
+.preview-mode .create-item,
+.preview-mode .delete-item {
+    display: none !important;
+}
+
+
+
+#resume section {
+    position: relative;
+}
+
+section .create-item {
+    position: absolute;
+    top: 7px;
+    right: -1rem;
+}
+section .delete-item {
+    position: absolute;
+    top: 0px;
+    right: -1rem;
+}

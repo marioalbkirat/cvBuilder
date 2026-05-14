@@ -1,0 +1,221 @@
+main.resume {
+    width: 794px;
+    height: 1123px;
+    background: #fff;
+    box-shadow: 0 0 10px -4px rgba(0, 0, 0, 0.5);
+}
+
+main.resume ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+main.resume section h2,
+main.resume section h3,
+main.resume section h4,
+main.resume section h5 {
+    margin: 0;
+}
+
+main.resume div.body {
+    display: grid;
+    grid-template-columns: 30% 70%;
+}
+
+main.resume div.body div.left-side {
+    max-height: 1123px;
+    min-height: 1123px;
+    padding: 0 2rem;
+    position: relative;
+    background: linear-gradient(136deg, hsl(41.83 98.37% 48.04%) 17%, hsl(0 0% 20%) 17%);
+}
+
+main.resume div.body div.left-side::before {
+    content: "";
+    position: absolute;
+    top: 214px;
+    left: 15px;
+    width: 3px;
+    height: calc(100% - 214px);
+    background: hsl(250 3.3% 35.69%);
+}
+
+main.resume div.body div.left-side section {
+    color: #fff;
+    padding: 1.8rem 0 1rem 0;
+    position: relative;
+    border-bottom: 1px dashed #fff;
+}
+
+main.resume div.body div.left-side section::before {
+    content: "";
+    position: absolute;
+    top: 25px;
+    left: -20px;
+    width: 0;
+    height: 30px;
+    border-left: 8px solid hsl(41.83 98.37% 48.04%);
+    border-radius: 4px;
+}
+
+main.resume div.body div.left-side section h2 {
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    padding-bottom: 1rem;
+}
+
+main.resume div.body div.left-side section.image {
+    padding: 23px 18px;
+    border: none;
+}
+
+main.resume div.body div.left-side section.image img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border: 5px solid #fff;
+    border-radius: 100% 100% 100% 0%;
+}
+
+main.resume div.body div.left-side ul.items {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 0.6rem 0;
+}
+
+main.resume div.body div.left-side ul.items li {
+    position: relative;
+    font-size: 14px;
+}
+
+main.resume div.body div.left-side ul.items li::before {
+    content: "";
+    position: absolute;
+    left: -19px;
+    width: 8px;
+    height: 8px;
+    background: hsl(41.83 98.37% 48.04%);
+    border-radius: 50%;
+}
+
+main.resume div.body div.left-side section.education ul.items li {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    text-transform: uppercase;
+}
+
+main.resume div.body div.left-side section.education h3 {
+    font-size: 14px;
+}
+
+
+main.resume div.body div.right-side {
+    position: relative;
+    background: #fff;
+}
+
+main.resume div.body div.right-side::before {
+    content: "";
+    position: absolute;
+    left: 10px;
+    width: 3px;
+    height: 100%;
+    background: hsl(250 3.3% 35.69%);
+}
+
+
+.resume .right-side section.header {
+    text-transform: uppercase;
+    margin-top: 3rem;
+    background-color: hsl(0deg 0% 94.12%);
+    padding: 1rem 0 1rem 4rem;
+
+}
+
+.resume .right-side section.header h1 {
+    color: hsl(240deg 2.17% 18.04%);
+    position: relative;
+}
+
+.resume .right-side section.header h1::before {
+    content: "";
+    border-left: 8px solid hsl(41.83deg 98.37% 48.04%);
+    position: absolute;
+    height: 50px;
+    left: -57px;
+    top: -7px;
+    border-radius: 4px;
+}
+
+.resume .right-side section.profile h2 {
+    position: relative;
+    padding: 1rem 0;
+    text-transform: uppercase;
+}
+
+.resume .right-side section.profile h2::before {
+    content: "";
+    border-left: 8px solid hsl(41.83deg 98.37% 48.04%);
+    position: absolute;
+    height: 30px;
+    left: -16px;
+    top: 15px;
+    border-radius: 4px;
+}
+
+.resume .right-side section.profile p {
+    color: hsl(0deg 0% 20%);
+    font-weight: 600;
+}
+
+.resume .right-side section.experience h2 {
+    position: relative;
+    padding: 1rem 0;
+    text-transform: uppercase;
+}
+
+.resume .right-side section.experience h2::before {
+    content: "";
+    border-left: 8px solid hsl(41.83deg 98.37% 48.04%);
+    position: absolute;
+    height: 30px;
+    left: -16px;
+    top: 15px;
+    border-radius: 4px;
+}
+
+.resume .right-side section.experience ul {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding-right: 1rem;
+}
+
+.resume .right-side section.experience ul li div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.resume .right-side section.experience ul li h3 {
+    text-transform: uppercase;
+}
+
+.resume .right-side section.header h2 {
+    color: hsl(0deg 0.99% 60.39%);
+
+}
+
+.resume .right-side section.profile {
+    padding: 1rem 0 1rem 1.5rem;
+    position: relative;
+}
+
+.resume .right-side section.experience {
+    padding: 1rem 0 1rem 1.5rem;
+    position: relative;
+
+}

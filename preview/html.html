@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, print-scale: 100%">
+    <title>Marwan Albkirat · Full‑Stack Developer CV</title>
+    <style>
+        section,
+        .item,
+        li {
+            break-inside: avoid;
+            page-break-inside: avoid;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            margin: 0;
+        }
+
+        main#resume {
+            display: grid;
+            grid-template-columns: 35% 65%;
+        }
+
+        main#resume div.left-side {
+            background: linear-gradient(135deg, #1e2a3a 0%, #0f1724 100%);
+            padding: 2rem 1.8rem;
+            color: #e8edf2;
+        }
+
+        main#resume div.right-side section h2 svg {
+            color: #c9a87b;
+        }
+
+        main#resume section {
+            padding: 1rem 0;
+        }
+
+        main#resume div.left-side section#image {
+            display: flex;
+            justify-content: center;
+        }
+
+        main#resume div.left-side section#image img {
+            width: 160px;
+            height: 160px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 4px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 15px 30px -8px rgba(0, 0, 0, 0.3);
+        }
+
+        main#resume section h2 {
+            font-weight: bold;
+            font-size: 22px;
+            text-transform: uppercase;
+            color: #c9a87b;
+            display: flex;
+            align-items: center;
+            margin: 0.5rem 0 0.8rem 0;
+            gap: 0.5rem;
+            position: relative;
+        }
+
+        main#resume section h2::after {
+            content: "";
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 60px;
+            height: 2px;
+            background: #c9a87b;
+        }
+
+        main#resume section:first-of-type h2 {
+            margin-top: 0;
+        }
+
+        main#resume div.left-side ul li {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.2rem;
+        }
+
+        main#resume div.left-side ul li i,
+        main#resume div.left-side ul li svg {
+            flex-shrink: 0;
+            margin-top: 5px;
+
+        }
+
+        main#resume div.left-side ul li span {
+            flex: 1;
+            overflow-wrap: anywhere;
+            word-break: break-word;
+        }
+
+        main#resume div.left-side #contact ul li {
+            position: relative;
+        }
+
+        main#resume div.left-side #contact ul li i {
+            width: 24px;
+            color: #c9a87b;
+            margin-top: 9px;
+            font-size: 0.85rem;
+        }
+
+        main#resume div.left-side #education ul li {
+            flex-direction: column;
+            position: relative;
+            gap: 0.4rem;
+            padding: 0.5rem 0;
+        }
+
+        main#resume div.left-side #education h3 {
+            text-transform: uppercase;
+            font-size: 1rem;
+
+        }
+
+        main#resume div.left-side #education h4 {
+            font-size: 0.8rem;
+            color: #c9a87b;
+
+        }
+
+        main#resume div.left-side #education h6 {
+            font-size: 0.7rem;
+            color: #c9a87b;
+        }
+
+        main#resume div.left-side #education h5 {
+            font-size: 0.65rem;
+            font-weight: 400;
+            color: #9aa6b5;
+        }
+
+        main#resume div.left-side #skills ul {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        main#resume div.left-side #skills ul li {
+            background-color: rgba(201, 168, 123, 0.15);
+            padding: 4px 24px 4px 12px;
+            font-size: 0.68rem;
+            color: #e8edf2;
+            border-radius: 20px;
+            border: 1px solid rgba(201, 168, 123, 0.3);
+            position: relative;
+        }
+
+        main#resume div.left-side #skills ul li svg {
+            right: 5px;
+            top: 3px;
+        }
+
+        main#resume div.left-side #languages ul li {
+            display: flex;
+            position: relative;
+            justify-content: space-between;
+            font-size: 0.75rem;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        main#resume div.left-side #languages ul li span:first-child {
+            font-weight: 500;
+            color: #ffffff;
+            text-transform: capitalize;
+        }
+
+        main#resume div.left-side #languages ul li span:last-child {
+            color: #c9a87b;
+            text-transform: capitalize;
+        }
+
+
+        main#resume div.left-side #volunteering ul li {
+            flex-direction: column;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+
+        main#resume div.left-side #volunteering h3 {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #ffffff;
+            margin-top: 0;
+            margin-bottom: 4px;
+        }
+
+        main#resume div.left-side #volunteering h4 {
+            font-size: 0.7rem;
+            font-weight: 400;
+            color: #c9a87b;
+            margin: 4px 0;
+        }
+
+        main#resume div.left-side #volunteering p {
+            font-size: 0.6rem;
+            color: #9aa6b5;
+            display: flex;
+            gap: 12px;
+            margin: 5px 0 6px;
+        }
+
+        main#resume div.left-side #volunteering p {
+            font-size: 0.68rem;
+            line-height: 1.45;
+            color: #cfd5de;
+        }
+
+        main#resume div.right-side {
+            background: #ffffff;
+            padding: 2rem 2rem 2rem 2rem;
+        }
+
+        main#resume div.right-side section#header {
+            border-left: 4px solid #c9a87b;
+            padding-left: 1.2rem;
+        }
+
+        main#resume div.right-side section#header h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #1e2a3a;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 0.25rem;
+        }
+
+        main#resume div.right-side section#header h2 {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: #c9a87b;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        main#resume div.right-side section h2 {
+            color: #1e2a3a;
+        }
+
+        main#resume div.right-side section h2 i {
+            color: #c9a87b;
+        }
+
+        main#resume div.right-side section#profile p {
+            font-size: 0.78rem;
+            line-height: 1.55;
+            color: #4a5562;
+            margin-top: 0.2rem;
+            text-align: justify;
+        }
+
+        main#resume div.right-side section#experience ul {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        main#resume div.right-side section#experience ul li {
+            position: relative;
+            padding-right: 0.3rem;
+        }
+
+        main#resume div.right-side section#experience .top {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            flex-wrap: wrap;
+            margin-bottom: 5px;
+        }
+
+        main#resume div.right-side section#experience h3 {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: #1e2a3a;
+        }
+
+        main#resume .right-side section#experience h5 {
+            font-size: 0.68rem;
+            font-weight: 500;
+            color: #c9a87b;
+        }
+
+        main#resume .right-side section#experience h4 {
+            font-size: 0.72rem;
+            font-weight: 600;
+            color: #6b7a8a;
+            margin: 4px 0 6px;
+        }
+
+        main#resume .right-side section#experience p {
+            font-size: 0.72rem;
+            line-height: 1.45;
+            color: #5a6874;
+        }
+
+        main#resume .right-side #projects ul.projects-items>li {
+            margin-bottom: 1.2rem;
+            border-bottom: 1px solid #edf2f7;
+            padding-bottom: 0.8rem;
+        }
+
+        main#resume .right-side #projects ul li div.project-meta {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        main#resume .right-side #projects ul li div.project-meta .create-item {
+            top: 10px
+        }
+
+        main#resume .right-side #projects ul li div.project-meta span {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            gap: 0.2rem;
+        }
+
+        main#resume .right-side #projects ul li div.project-meta span a {
+            text-decoration: none;
+            color: #c9a87b;
+            font-weight: 500;
+            font-size: 0.65rem;
+        }
+
+        main#resume .right-side #projects ul li div.project-meta span svg {
+            font-weight: 500;
+            font-size: 0.65rem;
+        }
+
+        main#resume .right-side #projects ul li {
+            position: relative;
+        }
+
+        main#resume .right-side #projects ul.tech-items {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.2rem;
+            padding: 0.4rem 0;
+            position: relative;
+        }
+
+        main#resume .right-side #projects ul.tech-items li svg {
+            top: 8px;
+            right: 4px;
+            width: 10px;
+            height: 10px;
+        }
+
+        main#resume .right-side #projects ul.tech-items li span {
+            color: #6c7e8e;
+            font-size: 0.65rem;
+            position: relative;
+            background: #f0f4f9;
+            padding: 4px 20px 4px 8px;
+            border-radius: 20px;
+        }
+
+        main#resume .right-side #projects ul li h3 {
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: #1e2a3a;
+            margin-bottom: 5px;
+        }
+
+        main#resume .right-side #projects ul li p {
+            font-size: 0.72rem;
+            line-height: 1.45;
+            color: #5a6874;
+        }
+
+
+        main#resume .right-side #achievements .achievement-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 0.8rem 0 0.2rem;
+        }
+
+        main#resume .right-side #achievements .achievement-card {
+            background: #f9fbfd;
+            padding: 12px 14px;
+            border-radius: 14px;
+            min-width: 100px;
+            position: relative;
+            text-align: center;
+            border: 1px solid #e9edf2;
+            flex: 1 0 auto;
+            transition: 0.1s;
+        }
+        main#resume .right-side #achievements .achievement-card .delete-item{
+            top: 8px;
+            right: 8px;
+        }
+
+        main#resume .right-side #achievements .achieve-value {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: #c9a87b;
+            line-height: 1.2;
+        }
+
+        main#resume .right-side #achievements .achieve-label {
+            font-size: 0.62rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 600;
+            color: #4c6a7c;
+            margin-top: 6px;
+        }
+
+        main#resume .right-side #certifications .cert-item {
+            margin-bottom: 1.2rem;
+        }
+
+        main#resume .right-side #certifications h3 {
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: #1e2a3a;
+            margin-bottom: 4px;
+        }
+
+        main#resume .right-side #certifications .cert-meta {
+            font-size: 0.68rem;
+            color: #c9a87b;
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-bottom: 5px;
+        }
+
+        main#resume .right-side #certifications p {
+            font-size: 0.7rem;
+            color: #5a6874;
+            line-height: 1.4;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<body>
+    <div class="cv-page">
+        <main id="resume">
+            <!-- LEFT COLUMN (dark) -->
+            <div class="left-side">
+                <section id="image">
+                    <img src="https://img.freepik.com/free-photo/young-bearded-man-with-striped-shirt_273609-5677.jpg?semt=ais_hybrid&amp;w=740&amp;q=80"
+                        alt="Marwan Albkirat">
+                </section>
+                <section id="contact">
+                    <h2><span>Contact</span><i class="fa-solid fa-id-card"></i></h2>
+                    <ul>
+                        <li><i class="fa fa-envelope"></i><span>marwan.albkirat@outlook.com</span></li>
+                        <li><i class="fa fa-phone"></i><span>+962 79 503 0624</span></li>
+                        <li><i class="fa fa-map-marker"></i><span>Amman - Jordan</span></li>
+                        <li><i class="fab fa-linkedin"></i><span>linkedin.com/in/marwan-albkirat</span></li>
+                    </ul>
+                </section>
+                <section id="education">
+                    <h2><span>Education</span><i class="fa-solid fa-graduation-cap"></i></h2>
+                    <ul>
+                        <li>
+                            <h3>Al Hussein Bin Talal University</h3>
+                            <h4>Bachelor of Software Engineering</h4>
+                            <h6>2022 – 2024 | GPA: 3.6/4.0</h6>
+                        </li>
+                    </ul>
+                </section>
+                <section id="skills">
+                    <h2><span>Skills</span><i class="fa-solid fa-brain"></i></h2>
+                    <ul>
+                        <li>Java & JavaScript (ES6+)</li>
+                        <li>Spring Boot 3, REST APIs</li>
+                        <li>React.js, Next.js, jQuery</li>
+                        <li>MySQL, MongoDB, Git/GitHub</li>
+                        <li>HTML5, CSS3, Tailwind, Bootstrap</li>
+                        <li>Problem-solving & Agile</li>
+                    </ul>
+                </section>
+                <section id="languages">
+                    <h2><span>Languages</span><i class="fa-solid fa-language"></i></h2>
+                    <ul>
+                        <li><span>Arabic</span><span>Native</span></li>
+                        <li><span>English</span><span>Intermediate (B2)</span></li>
+                    </ul>
+                </section>
+                <section id="volunteering">
+                    <h2><span>Volunteering</span><i class="fa-solid fa-handshake-angle"></i></h2>
+                    <ul>
+                        <li>
+                            <h3>Jordan Red Crescent Society</h3>
+                            <h4>Volunteer Coordinator</h4>
+                            <div class="vol-date">Jan 2023 – Present</div>
+                            <p>Organized community outreach programs and coordinated volunteer teams for humanitarian
+                                aid campaigns. Assisted in distributing essential supplies to underprivileged families
+                                and supported emergency response initiatives.</p>
+                            <div class="vol-location"><i class="fa fa-location-dot"></i> Amman, Jordan</div>
+                        </li>
+                        <li>
+                            <h3>Code for Jordan</h3>
+                            <h4>Technical Mentor</h4>
+                            <div class="vol-date">Sep 2023 – Dec 2023</div>
+                            <p>Mentored junior students in web development fundamentals, led workshops on Git and
+                                responsive design, and contributed to open-source civic tech projects.</p>
+                            <div class="vol-location"><i class="fa fa-location-dot"></i> Remote / Amman</div>
+                        </li>
+                    </ul>
+                </section>
+            </div>
+
+            <!-- RIGHT COLUMN -->
+            <div class="right-side">
+                <section id="header">
+                    <h1>MARWAN ALBKIRAT</h1>
+                    <h2>Full-stack Developer</h2>
+                </section>
+                <section id="profile">
+                    <h2><span>Profile</span><i class="fa-solid fa-user"></i></h2>
+                    <p>As a full-stack developer proficient in multiple programming languages, I possess over two years
+                        of hands-on experience across three IT companies, showcasing strong adaptability in diverse
+                        technologies. My expertise includes developing content management systems using Drupal, building
+                        dynamic applications with PHP and Laravel, and creating robust backend services using Java and
+                        Spring Boot 3. I have solid experience with OOP, RESTful APIs, Spring Data JPA, and modern
+                        frontend libraries like React.js.</p>
+                </section>
+                <section id="experience">
+                    <h2><span>Experience</span><i class="fa-solid fa-briefcase"></i></h2>
+                    <ul>
+                        <li class="item">
+                            <div class="top">
+                                <h3>Menadevs (Scale AI Partner)</h3>
+                                <h5>2023 – Present</h5>
+                            </div>
+                            <h4>AI Prompt Engineer</h4>
+                            <p>Train large language models for programming tasks, evaluate model responses, and
+                                fine-tune prompt strategies to enhance code generation accuracy. Collaborate with global
+                                teams to improve AI reasoning across multiple projects.</p>
+                        </li>
+                        <li class="item">
+                            <div class="top">
+                                <h3>Lyon Jo</h3>
+                                <h5>2022 – 2023</h5>
+                            </div>
+                            <h4>Full-Stack PHP Developer</h4>
+                            <p>End-to-end website development from Adobe XD designs to production. Utilized Drupal CMS,
+                                HTML5, CSS3, JavaScript, jQuery, and Bootstrap 4. Optimized performance and integrated
+                                third-party APIs.</p>
+                        </li>
+                        <li class="item">
+                            <div class="top">
+                                <h3>Fikra For Business Development</h3>
+                                <h5>2021 – 2022</h5>
+                            </div>
+                            <h4>Web Developer</h4>
+                            <p>Developed and maintained internal systems (HR, car rental modules) using Laravel,
+                                Livewire, Flutter (frontend) and native PHP. Responsible for monitoring,
+                                troubleshooting, and server-side improvements to ensure high availability.</p>
+                        </li>
+                    </ul>
+                </section>
+                <section id="projects">
+                    <h2><span>Projects</span><i class="fa-solid fa-diagram-project"></i></h2>
+                    <div class="project-item">
+                        <h3>Portfolio Builder (PortCV)</h3>
+                        <p>Web platform enabling users to create and customize professional portfolios/resumes with
+                            drag‑and‑drop templates. Implemented pixel‑perfect PDF export and dynamic theming.</p>
+                        <div class="project-meta">
+                            <span class="project-link"><i class="fa-solid fa-arrow-up-right-from-square"></i> <a
+                                    href="#">Live Demo</a></span>
+                            <span class="project-tech">Next.js · Node.js · MongoDB · Tailwind</span>
+                        </div>
+                    </div>
+                    <div class="project-item">
+                        <h3>E‑Commerce Backend (Spring Boot)</h3>
+                        <p>RESTful e‑commerce backend with JWT authentication, product management, order processing, and
+                            Stripe payment integration. Documented with OpenAPI.</p>
+                        <div class="project-meta">
+                            <span class="project-tech">Java 17 · Spring Boot 3 · Spring Data JPA · MySQL</span>
+                        </div>
+                    </div>
+                    <div class="project-item">
+                        <h3>TaskFlow – Team Collaboration</h3>
+                        <p>Full‑stack task manager with real‑time updates (WebSockets). Frontend: React + Redux Toolkit,
+                            backend: Node.js + Express, MongoDB.</p>
+                        <div class="project-meta">
+                            <span class="project-link"><i class="fa-brands fa-github"></i> <a href="#">GitHub
+                                    Repo</a></span>
+                            <span class="project-tech">MERN · Socket.io · JWT</span>
+                        </div>
+                    </div>
+                </section>
+                <section id="achievements">
+                    <h2><span>Achievements</span><i class="fa-solid fa-trophy"></i></h2>
+                    <div class="achievement-grid">
+                        <div class="achievement-card">
+                            <div class="achieve-value">⭐ 4.8/5</div>
+                            <div class="achieve-label">AI Prompt Accuracy</div>
+                        </div>
+                        <div class="achievement-card">
+                            <div class="achieve-value">12+</div>
+                            <div class="achieve-label">Projects Delivered</div>
+                        </div>
+                        <div class="achievement-card">
+                            <div class="achieve-value">3x</div>
+                            <div class="achieve-label">Hackathon Finalist</div>
+                        </div>
+                        <div class="achievement-card">
+                            <div class="achieve-value">100%</div>
+                            <div class="achieve-label">Client Satisfaction</div>
+                        </div>
+                    </div>
+                </section>
+                <section id="certifications">
+                    <h2><span>Certifications</span><i class="fa-solid fa-certificate"></i></h2>
+                    <div class="cert-item">
+                        <h3>Java Programming Masterclass</h3>
+                        <div class="cert-meta"><span>Oracle University</span><span>Issued: Feb 2024</span></div>
+                        <div class="cert-desc">Comprehensive Java SE 17, OOP, Collections, Multithreading, and JDBC.
+                        </div>
+                    </div>
+                    <div class="cert-item">
+                        <h3>Spring Boot 3 & Spring Framework 6</h3>
+                        <div class="cert-meta"><span>Udemy · Chad Darby</span><span>Issued: Jan 2024</span></div>
+                        <div class="cert-desc">REST APIs, Spring Data JPA, Spring Security, Thymeleaf, AOP.</div>
+                    </div>
+                    <div class="cert-item">
+                        <h3>React - The Complete Guide</h3>
+                        <div class="cert-meta"><span>Meta Backend Professional Certificate</span><span>Issued: Sep
+                                2023</span></div>
+                        <div class="cert-desc">Hooks, Context API, Redux, Next.js fundamentals, and modern frontend
+                            architecture.</div>
+                    </div>
+                    <div class="cert-item">
+                        <h3>Responsive Web Design</h3>
+                        <div class="cert-meta"><span>freeCodeCamp</span><span>Issued: May 2023</span></div>
+                        <div class="cert-desc">HTML5, CSS3 Flexbox, Grid, accessibility, and modern layouts.</div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+</body>
+
+</html>
+```
