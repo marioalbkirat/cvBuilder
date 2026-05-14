@@ -1,9 +1,11 @@
 import InlineEditText from "@/lib/inlineEdit/inlineEditText";
 import { ResumeLanguages } from "@/types/resumeContent";
 import { createValidator } from "@/utils/validator";
+import { useResume } from "@/context/resumeContext";
 import { FaPlusCircle, FaTrash } from "react-icons/fa";
 import { LuLanguages } from "react-icons/lu";
-export default function ResumeLanguage({ languages, updateCVData }: { languages: ResumeLanguages, updateCVData: (path: (string | number)[], value: unknown) => void; }) {
+export default function ResumeLanguage({ languages, updateCVData }: { languages: ResumeLanguages, updateCVData: (path: (string | number)[], value: unknown) => void; } ) {
+    const { showSectionIcons } = useResume();
     const addLanguageItem = () => {
         const newItem = { id:  crypto.randomUUID(), lang: "new language", level: "new level" };
         const updatedItems = [...languages.items, newItem];
@@ -16,8 +18,8 @@ export default function ResumeLanguage({ languages, updateCVData }: { languages:
                     validate={(newVal) => createValidator({ field: "section name", min: 3, max: 13, required: true, type: "text" })(newVal)}
                     onChange={(val) => updateCVData(["languages", "title"], val)}
                 />
-                <LuLanguages />
-                <FaPlusCircle onClick={addLanguageItem} className="create-item" />
+                {showSectionIcons && <LuLanguages />}
+                {showSectionIcons && <FaPlusCircle onClick={addLanguageItem} className="create-item" />}
             </h2>
             <ul>
                 {languages.items.map((lang: any, idx: number) => (

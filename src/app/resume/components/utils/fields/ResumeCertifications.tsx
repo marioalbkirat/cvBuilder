@@ -1,8 +1,10 @@
 import InlineEditText from "@/lib/inlineEdit/inlineEditText";
 import { ResumeCertifications as ResumeCertificationsType } from "@/types/resumeContent";
 import { createValidator } from "@/utils/validator";
+import { useResume } from "@/context/resumeContext";
 import { FaPlusCircle, FaTrash } from "react-icons/fa";
-export default function ResumeCertifications({ certifications, updateCVData }: { certifications: ResumeCertificationsType, updateCVData: (path: (string | number)[], value: unknown) => void; }) {
+export default function ResumeCertifications({ certifications, updateCVData }: { certifications: ResumeCertificationsType, updateCVData: (path: (string | number)[], value: unknown) => void; } ) {
+    const { showSectionIcons } = useResume();
     const addCertificationItem = () => {
         const newItem = { id: crypto.randomUUID(), name: "New Certification", issuer: "New Issuer", date: "Date Earned", description: "New certification description" };
         const updatedItems = [...certifications.items, newItem];
@@ -16,7 +18,7 @@ export default function ResumeCertifications({ certifications, updateCVData }: {
             >
                 <i className="fa-solid fa-certificate"></i>
             </InlineEditText>
-            <FaPlusCircle onClick={addCertificationItem} className="create-item" />
+            {showSectionIcons && <FaPlusCircle onClick={addCertificationItem} className="create-item" />}
             {certifications?.items?.map((certification: any, idx: number) => (
                 <div className="cert-item" key={idx}>
                     <InlineEditText as="h3" title="certification name" initialValue={certification.name || "Certification Name"}

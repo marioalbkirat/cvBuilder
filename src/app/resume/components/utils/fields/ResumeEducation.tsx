@@ -1,8 +1,10 @@
 import InlineEditText from "@/lib/inlineEdit/inlineEditText";
 import { ResumeEducation as ResumeEducationType } from "@/types/resumeContent";
 import { createValidator } from "@/utils/validator";
+import { useResume } from "@/context/resumeContext";
 import { FaGraduationCap, FaPlusCircle, FaTrash } from "react-icons/fa";
-export default function ResumeEducation({ education, updateCVData }: { education: ResumeEducationType, updateCVData: (path: (string | number)[], value: unknown) => void; }) {
+export default function ResumeEducation({ education, updateCVData }: { education: ResumeEducationType, updateCVData: (path: (string | number)[], value: unknown) => void; } ) {
+    const { showSectionIcons } = useResume();
     const addEducationItem = () => {
         const newItem = { id: crypto.randomUUID(), university: "new university", major: "new major" };
         const updatedItems = [...education.items, newItem];
@@ -18,8 +20,8 @@ export default function ResumeEducation({ education, updateCVData }: { education
                     validate={(newVal) => createValidator({ field: "section name", min: 3, max: 13, required: true, type: "text" })(newVal)}
                     onChange={(val) => updateCVData(["education", "title"], val)}
                 />
-                <FaGraduationCap />
-                <FaPlusCircle onClick={addEducationItem} className="create-item" />
+                {showSectionIcons && <FaGraduationCap />}
+                {showSectionIcons && <FaPlusCircle onClick={addEducationItem} className="create-item" />}
             </h2>
             <ul>
                 {education.items.map((item: any, idx: number) => (
